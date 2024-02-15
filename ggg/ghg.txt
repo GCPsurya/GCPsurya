@@ -1,0 +1,68 @@
+
+
+------------------------------------------------------------------------------------------
+
+                    ***** 54:-----
+
+
+
+Airflow Composer: A Comprehensive Overview
+Apache Airflow is an open-source platform used to programmatically author, schedule, and monitor workflows. Cloud Composer, a fully managed workflow orchestration service on Google Cloud, is built on Apache Airflow. It allows users to create, schedule, monitor, and manage workflows that span across clouds and on-premises data centers
+A Comprehensive Overview
+Airflow uses directed acyclic graphs (DAGs) to manage workflow orchestration. Tasks and dependencies are defined in Python and then Airflow manages the scheduling and execution. DAGs can be run either on a defined schedule (e.g. hourly or daily) or based on external event triggers (e.g. a file appearing in Hive[4]). Previous DAG-based schedulers like Oozie and Azkaban tended to rely on multiple configuration files and file system trees to create a DAG, whereas in Airflow, DAGs can often be written in one Python file
+
+Writing Airflow DAGs:
+
+To write an Apache Airflow directed acyclic graph (DAG) that runs in a Cloud Composer environment, you can follow the guide provided by Google Cloud
+1. DAGs are defined in standard Python files, and the Python code creates a DAG that runs once per day
+2. The DAGs are a collection of tasks, and you can use various operators such as EmailOperator to send email notifications from the DAG
+BashOperator, PythonOperator, DummyOperator, Sensor operators, DockerOperator, Sensor operators, SqlSensor
+Running an Apache Airflow DAG in Cloud Composer:
+
+To run an Apache Airflow DAG in Cloud Composer, you need to create a Cloud Composer environment and define the necessary configurations, such as the region and image version
+2. Once the environment is set up, you can view the DAG in the Airflow web interface, which is available for each Cloud Composer environment
+
+Creating a DAG in Cloud Composer:
+
+There are various resources available, including video tutorials, that provide step-by-step guidance on creating the first DAG in Cloud Composer (Airflow) 
+3. These resources can be helpful for beginners looking to get started with Airflow Composer.
+
+
+Writing Files to Composer Cloud Storage Bucket:
+
+If you need to write a file from a DAG to your Composer cloud storage bucket, you can use the Cloud Storage Hook provided by Apache Airflow. There are discussions on platforms like Stack Overflow that provide insights into writing files to the Composer cloud storage bucket
+
+In conclusion, Airflow Composer, built on Apache Airflow, offers a powerful and user-friendly environment for creating, scheduling, and managing workflows. By leveraging the capabilities of Cloud Composer, users can benefit from a fully managed solution that simplifies the orchestration of complex workflows.
+By following the provided resources and guides, users can gain a comprehensive understanding of how to effectively utilize Airflow Composer for their workflow orchestration needs.
+
+
+
+
+Cloud Composer Pricing: A Comprehensive Overview
+Cloud Composer pricing is consumption-based, meaning users pay for what they use, as measured by vCPU/hour, GB/month, and GB transferred/month
+3. The pricing consists of several components, including compute cost, storage, and environment fees. Cloud Composer 2 offers workers autoscaling, which is not available in Cloud Composer 1
+
+
+Components of Cloud Composer Pricing
+1. Compute Cost: This includes the cost of the Google Kubernetes Engine Nodes that run the Airflow
+2. Storage: It covers the cost of database storage, compute storage, and network egress
+3. Environment Fee: This fee is based on the size of the Cloud Composer environment
+
+
+Example of Cloud Composer Pricing
+An example of Cloud Composer 1 pricing includes vCPU time, SQL vCPU, compute storage, database storage, and a small Cloud Composer environment fee. The total fees are calculated based on the usage of these resources.
+Strategies to Reduce Cloud Composer Bills
+There are strategies to reduce Cloud Composer bills, such as using scheduled CICD pipelines to shut down environments and restore them to their previous state. Additionally, understanding the pricing structure and optimizing resource usage can help in reducing costs.
+
+----
+
+The architecture of Apache Airflow is based on a platform that allows the building and running of workflows. These workflows are represented as Directed Acyclic Graphs (DAGs), which consist of individual pieces of work called tasks, arranged with dependencies and data flows taken into account. An Airflow installation generally consists of the following components:
+Scheduler: The scheduler orchestrates various DAGs and their tasks, taking care of their interdependencies, limiting the number of runs of each DAG, and making it easy for users to schedule and run DAGs on Airflow.
+Executor: The executor is responsible for running tasks. In the default Airflow installation, this runs everything inside the scheduler, but most production-suitable executors actually push task execution out to workers.
+Web Server: This is the UI of Airflow, providing an overview of the overall health of different DAGs. It also allows users to manage users, roles, and different configurations for the Airflow setup.
+Database: Airflow supports a variety of databases for its metadata store. This database stores metadata about DAGs, their runs, and other Airflow configurations like users, roles, and connections.
+DAG Files: These are the workflow definitions that are read by the scheduler and executor, and any workers the executor has.
+The architecture of Apache Airflow is designed to provide ease of use, high extensibility, infinite scalability, visualization, and a stable REST API, making it a powerful platform for creating and orchestrating complex data pipelines.
+
+
+---
